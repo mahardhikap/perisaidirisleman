@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { LoginUser } from '@/libs';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function SignIn() {
   const router = useRouter();
@@ -18,6 +18,15 @@ export default function SignIn() {
       ...dataLogin,
       [name]: value,
     });
+  };
+  const LoginUser = async (data) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/login`, data);
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
   };
   const handleLogin = async () => {
     const resultLogin = await LoginUser(dataLogin);

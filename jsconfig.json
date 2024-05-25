@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/app/dashboard/edit-member/*": ["./src/app/dashboard/edit-member/*/page"]
     }
   }
 }

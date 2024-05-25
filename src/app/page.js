@@ -1,4 +1,8 @@
-import { First, Footer, Header, Second, Third } from '@/components';
+import First from './first/first';
+import Footer from './footer/footer';
+import Header from './header/header';
+import Second from './second/second';
+import Third from './third/third';
 
 export default function Home() {
   return (

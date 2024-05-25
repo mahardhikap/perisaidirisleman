@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { DeleteEvent, ListEventDashboard } from '@/libs';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export default function FormListEvent() {
   const [data, setData] = useState([]);
@@ -15,6 +15,32 @@ export default function FormListEvent() {
     }
     return text;
   };
+
+  const ListEventDashboard = async (onPage, onSearch) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/my/article?search=${onSearch}&searchby=title&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+      );
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
+  };
+
+  const DeleteEvent = async (idToDelete) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/delete/article/${idToDelete}`,
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+      );
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
+  };  
 
   const handleGetListEventDashboard = async () => {
     const getListEventDashboard = await ListEventDashboard(page, title);

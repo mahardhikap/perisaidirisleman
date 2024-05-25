@@ -1,15 +1,42 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ListMemberDashboard, DeleteMember } from "@/libs";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function FormListMember() {
   const navigate = useRouter()
   const [memberUsername, setMemberUsername] = useState("");
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+
+  const ListMemberDashboard = async (onFullName, onPage) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/member?searchby=fullname&search=${onFullName}&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+      );
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
+  };
+
+  const DeleteMember = async (idToDelete) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/delete/member/${idToDelete}`,
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+      );
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
+  };
+
   const getListMember = async () => {
     const result = await ListMemberDashboard(memberUsername, page);
     setData(result?.data);

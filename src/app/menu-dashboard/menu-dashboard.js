@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -7,6 +7,9 @@ import Swal from 'sweetalert2';
 export default function MenuDashboard() {
   const path = usePathname();
   const router = useRouter();
+
+  // Check if localStorage is available
+  const username = typeof window !== 'undefined' ? localStorage.getItem('username') : null;
 
   const handleLogout = () => {
     Swal.fire({
@@ -28,11 +31,14 @@ export default function MenuDashboard() {
       }
     });
   };
+
   return (
     <div>
-      <div className="mb-3 p-3 font-medium">
-        Welcome, {localStorage.getItem('username')}
-      </div>
+      {username && (
+        <div className="mb-3 p-3 font-medium">
+          Welcome, {username}
+        </div>
+      )}
       <ul className="flex flex-col list-none p-0 m-0">
         <Link href={'/list-event'}>
           <li
@@ -79,9 +85,11 @@ export default function MenuDashboard() {
             Edit Profile
           </li>
         </Link>
-        <li className="p-3 cursor-pointer m-0" onClick={() => handleLogout()}>
-          Logout
-        </li>
+        {username && (
+          <li className="p-3 cursor-pointer m-0" onClick={() => handleLogout()}>
+            Logout
+          </li>
+        )}
       </ul>
     </div>
   );

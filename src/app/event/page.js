@@ -1,14 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { EventCard, Header, Footer } from "@/components";
-import { SearchEvent } from "@/libs";
+import EventCard from "../event-card/event-card";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import axios from "axios";
 import Link from "next/link";
 
 export default function Event() {
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
   const [data, setData] = useState([]);
+
+  const SearchEvent = async ({ searchTitle, onPage }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/article?searchby=title&search=${searchTitle}&sortby=created_at&sort=DESC&limit=6&page=${onPage}`
+      );
+      return response.data; // Mengembalikan data yang diterima dari panggilan API
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    }
+  };
 
   const handleSearchEvent = async () => {
     try {
