@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function FormListEvent() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState('')
+  const navigate = useRouter()
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -98,7 +100,7 @@ export default function FormListEvent() {
       {data?.rows?.map((item, index) => {
         return (
           <div className="grid grid-cols-5 lg:grid-cols-6 mb-2 bg-white p-2 rounded-lg" key={index}>
-            <div className="col-span-5 lg:col-span-2">
+            <div className="col-span-5 lg:col-span-2 relative">
               <Image
                 src={
                   item?.image === ('null' || null || 'undefined' || undefined)
@@ -110,6 +112,13 @@ export default function FormListEvent() {
                 height={500}
                 className="w-full h-60 object-cover rounded-xl border"
               />
+              {item?.tags.length > 0 ? (
+            <span className="p-2 rounded-2xl bg-white absolute top-2 left-2 text-xs font-medium border">
+              {item?.tags}
+            </span>
+          ) : (
+            ""
+          )}
             </div>
             <div className="col-span-4 lg:col-span-3 py-2 lg:px-2">
               <h2 className="font-medium truncate">{item?.title}</h2>
@@ -117,7 +126,7 @@ export default function FormListEvent() {
               <p className="font-light">{item?.created_at}</p>
             </div>
             <div className="col-span-1 lg:col-span-1 flex flex-col gap-5">
-              <button className="p-3 bg-yellow-400 text-white font-medium truncate">
+              <button className="p-3 bg-yellow-400 text-white font-medium truncate" onClick={()=>navigate.push(`/edit-event/${item?.article_id}`)}>
                 Edit
               </button>
               <button
