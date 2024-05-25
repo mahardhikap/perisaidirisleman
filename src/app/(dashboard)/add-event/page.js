@@ -1,5 +1,5 @@
 'use client'
-import MenuDashboard from "@/app/menu-dashboard/menu-dashboard";
+import MenuDashboard from "@/components/menu-dashboard/menu-dashboard";
 import { PrivateRoute } from "@/context/page";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
 
-const CustomEditor = dynamic(() => import('../../ckeditor/custom-editor'), { ssr: false });
+const CustomEditor = dynamic(() => import('../../../components/ckeditor/custom-editor'), { ssr: false });
 
 export default function AddEvent() {
   const [inputEvent, setInputEvent] = useState({

@@ -16,7 +16,7 @@ export default function EventCard({
   };
   return (
     <div>
-      <div className="h-96 w-full rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer shadow hover:bg-blue-50 relative border border-[#fad74f]">
+      <div className="h-96 w-full rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer border-2 hover:bg-blue-50 relative border">
         <div className="relative">
           <Image
             src={onImage}

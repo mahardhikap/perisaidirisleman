@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
-import FormListMember from '@/app/list/list-member';
-import MenuDashboard from '@/app/menu-dashboard/menu-dashboard';
+import FormListMember from '@/components/list/list-member';
+import MenuDashboard from '@/components/menu-dashboard/menu-dashboard';
 import { PrivateRoute } from '@/context/page';
 
 export default function ListMember() {

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MenuDashboard from "@/app/menu-dashboard/menu-dashboard";
+import MenuDashboard from "@/components/menu-dashboard/menu-dashboard";
 import { PrivateRoute } from "@/context/page";
 
 export default function EditProfile() {

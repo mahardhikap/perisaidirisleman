@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import EventCard from "../event-card/event-card";
-import Header from "../header/header";
-import Footer from "../footer/footer";
+import EventCard from "@/components/event-card/event-card";
+import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 import axios from "axios";
 import Link from "next/link";
 
@@ -28,6 +28,18 @@ export default function Event() {
     try {
       const searchData = await SearchEvent({
         searchTitle: title,
+        onPage: 1,
+      });
+      setData(searchData?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleShowEvent = async () => {
+    try {
+      const searchData = await SearchEvent({
+        searchTitle: title,
         onPage: page,
       });
       setData(searchData?.data);
@@ -49,7 +61,7 @@ export default function Event() {
   };
 
   useEffect(() => {
-    handleSearchEvent();
+    handleShowEvent();
   }, [page]);
   return (
     <>

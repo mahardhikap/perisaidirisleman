@@ -1,5 +1,5 @@
 "use client";
-import MenuDashboard from "@/app/menu-dashboard/menu-dashboard";
+import MenuDashboard from "@/components/menu-dashboard/menu-dashboard";
 import { PrivateRoute } from "@/context/page";
 import React, { useState } from "react";
 import Image from "next/image";

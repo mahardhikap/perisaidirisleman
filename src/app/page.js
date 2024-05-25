@@ -1,8 +1,8 @@
-import First from './first/first';
-import Footer from './footer/footer';
-import Header from './header/header';
-import Second from './second/second';
-import Third from './third/third';
+import First from '@/components/first/first';
+import Footer from '@/components/footer/footer';
+import Header from '@/components/header/header';
+import Second from '@/components/second/second';
+import Third from '@/components/third/third';
 
 export default function Home() {
   return (
