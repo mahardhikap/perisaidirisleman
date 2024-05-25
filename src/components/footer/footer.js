@@ -21,8 +21,8 @@ export default function Footer() {
             width={30}
             height={30}
           />
-          <p className="font-medium text-white hover:text-blue-500 cursor-pointer transition duration-500 ease-in-out">
-            <a href="https://instagram.com/perisaidirisleman" target="_blank">
+          <p className="font-medium cursor-pointer transition duration-500 ease-in-out">
+            <a href="https://instagram.com/perisaidirisleman" target="_blank" className='text-white hover:text-blue-500'>
               Perisai Diri Sleman
             </a>
           </p>
@@ -34,8 +34,8 @@ export default function Footer() {
             width={30}
             height={30}
           />
-          <p className="font-medium text-white hover:text-blue-500 cursor-pointer transition duration-500 ease-in-out">
-            <a href="mailto:info.pdsleman@gmail.com" target="_blank">
+          <p className="font-medium cursor-pointer transition duration-500 ease-in-out">
+            <a href="mailto:info.pdsleman@gmail.com" target="_blank" className='text-white hover:text-blue-500'>
               Perisai Diri Sleman
             </a>
           </p>

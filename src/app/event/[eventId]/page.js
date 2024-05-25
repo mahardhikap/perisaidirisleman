@@ -29,9 +29,7 @@ export default function DetailEvent() {
       </div>
       <div className="container mx-auto w-11/12 sm:w-10/12">
         <div className="text-center my-10 text-md sm:text-lg md:text-xl lg:text-2xl font-bold">
-          lorem asdasdas asda sdasdasdasdasd adasda sda asdas dads asd a sas
-          dasdasdasd as dasdasd asASaasdasd as ad asd asd asdasdasd asd
-          asdasdasd asd asasd asd asdasd asd
+          {data?.title}
         </div>
         <div className="flex justify-center my-2">
           <Image
@@ -40,7 +38,7 @@ export default function DetailEvent() {
                 ? "/images/noimage.png"
                 : data?.image
             }
-            className="w-full h-70vw sm:h-50vw lg:h-40vw bg-slate-200 rounded-xl object-cover"
+            className="w-full h-70vw sm:h-50vw lg:h-40vw bg-slate-200 rounded-xl object-cover border shadow-sm"
             width={500}
             height={500}
             alt="detail-event-image"
@@ -51,9 +49,13 @@ export default function DetailEvent() {
             {data?.created_at} - {data?.username}
           </p>
         </div>
-        <div className="text-sm sm:text-md md:text-lg">
+        <div
+          className="text-sm sm:text-md md:text-lg"
+          dangerouslySetInnerHTML={{ __html: data?.post_article }}
+        />
+        {/* <div className="text-sm sm:text-md md:text-lg">
           {data?.post_article}
-        </div>
+        </div> */}
       </div>
       <div className="rounded-t-3xl mx-auto container bg-[#fad74f] mt-10">
         <div className="container mx-auto w-11/12 sm:w-10/12 py-20">

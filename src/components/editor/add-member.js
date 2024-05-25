@@ -52,7 +52,7 @@ export default function FormMember() {
         <Image
           src={(photoUpload && inputMember.photo) || '/images/noimage.png'}
           alt="Preview"
-          className="mb-5 rounded-md border border-gray-300 w-40 h-60 rounded-lg object-cover"
+          className="mb-5 rounded-md border border-gray-300 w-60 h-60 rounded-lg object-cover"
           width={100}
           height={100}
         />
@@ -61,6 +61,7 @@ export default function FormMember() {
         id="file"
         type="file"
         name="photo"
+        accept=".png, .jpg, .jpeg, .jfif, .webp"
         onChange={handleChangePhoto}
         className="hidden"
       />

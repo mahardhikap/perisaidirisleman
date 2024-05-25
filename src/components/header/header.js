@@ -20,7 +20,7 @@ export default function Header() {
         </Link>
       </div>
       <div>
-        <ul className="flex flex-row gap-5 font-medium">
+        <ul className="flex flex-row gap-5 font-medium list-none">
           <Link href={'/'}>
             <li
               className={`${

@@ -1,26 +1,33 @@
-'use client';
-import React, { useState } from 'react';
-import { AddEventDashboard } from '@/libs';
-import Image from 'next/image';
+"use client";
+import React, { useState } from "react";
+import { AddEventDashboard } from "@/libs";
+import Image from "next/image";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useRouter } from "next/navigation";
 
 export default function FormEvent() {
   const [inputEvent, setInputEvent] = useState({
-    title: '',
-    post_article: '',
-    tags: '',
-    image: '',
+    title: "",
+    post_article: "",
+    tags: "",
+    image: "",
   });
   const [imageUpload, setImageUpload] = useState(null);
+  const navigate = useRouter();
 
   const handleAddEvent = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('title', inputEvent.title);
-    formData.append('post_article', inputEvent.post_article);
-    formData.append('tags', inputEvent.tags);
-    formData.append('image', imageUpload);
-    await AddEventDashboard(formData);
-    setInputEvent({ title: '', post_article: '', tags: '', image: '' });
+    formData.append("title", inputEvent.title);
+    formData.append("post_article", inputEvent.post_article);
+    formData.append("tags", inputEvent.tags);
+    formData.append("image", imageUpload);
+    const response = await AddEventDashboard(formData);
+    setInputEvent({ title: "", post_article: "", tags: "", image: "" });
+    if (response.status === 201) {
+      navigate.push("/list-event");
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -39,9 +46,9 @@ export default function FormEvent() {
 
   return (
     <div>
-      <label htmlFor="file" className="block">
+      <label htmlFor="file">
         <Image
-          src={(imageUpload && inputEvent.image) || '/images/noimage.png'}
+          src={(imageUpload && inputEvent.image) || "/images/noimage.png"}
           alt="Preview"
           className="mb-5 rounded-md border border-gray-300 w-96 h-60 rounded-lg object-cover"
           width={100}
@@ -51,6 +58,7 @@ export default function FormEvent() {
       <input
         id="file"
         type="file"
+        accept=".png, .jpg, .jpeg, .jfif, .webp"
         name="image"
         onChange={handleChangeImage}
         className="hidden"
@@ -64,15 +72,31 @@ export default function FormEvent() {
           placeholder="Title"
           className="p-3 outline-none bg-white rounded-md w-full"
         />
-        <textarea
-          name="post_article"
-          value={inputEvent.post_article}
-          onChange={handleChangeInput}
-          cols="30"
-          rows="10"
-          className="w-full outline-none p-3 rounded-md"
-          placeholder="Article"
-        ></textarea>
+        <CKEditor
+          editor={ClassicEditor}
+          data={inputEvent.post_article}
+          config={{
+            toolbar: [
+              "heading",
+              "|",
+              "bold",
+              "italic",
+              "|",
+              "bulletedList",
+              "numberedList",
+              "|",
+              "link",
+              "blockquote",
+              "|",
+              "undo",
+              "redo",
+            ],
+          }}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setInputEvent({ ...inputEvent, post_article: data });
+          }}
+        />
         <input
           type="text"
           name="tags"

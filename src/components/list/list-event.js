@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 export default function FormListEvent() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [title, setTitle] = useState('')
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -16,13 +17,24 @@ export default function FormListEvent() {
   };
 
   const handleGetListEventDashboard = async () => {
-    const getListEventDashboard = await ListEventDashboard(page);
+    const getListEventDashboard = await ListEventDashboard(page, title);
     setData(getListEventDashboard?.data);
   };
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= data?.pages?.totalPage) {
       setPage(pageNumber);
+    }
+  };
+
+  const handleSearchEvent = async () => {
+    const getListEventDashboard = await ListEventDashboard(1, title)
+    setData(getListEventDashboard?.data)
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearchEvent();
     }
   };
 
@@ -54,9 +66,12 @@ export default function FormListEvent() {
   }, [page]);
   return (
     <div>
+      <div>
+        <input type="text" onChange={(e)=> setTitle(e.target.value)} onKeyDown={handleKeyDown} className='p-3 w-full mb-3 rounded-lg border' placeholder='Cari judul, enter'/>
+      </div>
       {data?.rows?.map((item, index) => {
         return (
-          <div className="grid grid-cols-5 lg:grid-cols-6 mb-2" key={index}>
+          <div className="grid grid-cols-5 lg:grid-cols-6 mb-2 bg-white p-2 rounded-lg" key={index}>
             <div className="col-span-5 lg:col-span-2">
               <Image
                 src={
@@ -67,14 +82,12 @@ export default function FormListEvent() {
                 alt="image article"
                 width={500}
                 height={500}
-                className="w-full h-40 object-cover rounded-xl"
+                className="w-full h-60 object-cover rounded-xl border"
               />
             </div>
             <div className="col-span-4 lg:col-span-3 py-2 lg:px-2">
-              <p className="font-medium truncate">{item?.title}</p>
-              <p className="break-all">
-                {truncateText(item?.post_article, 100)}
-              </p>
+              <h2 className="font-medium truncate">{item?.title}</h2>
+              <div className="break-all" dangerouslySetInnerHTML={{__html: truncateText(item?.post_article, 70)}}/>
               <p className="font-light">{item?.created_at}</p>
             </div>
             <div className="col-span-1 lg:col-span-1 flex flex-col gap-5">

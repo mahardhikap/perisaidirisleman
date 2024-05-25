@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 export default function EventCard({
   onImage,
@@ -10,28 +10,32 @@ export default function EventCard({
 }) {
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
+      return text.substring(0, maxLength) + "...";
     }
     return text;
   };
   return (
     <div>
-      <div className="h-72 rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer shadow hover:bg-blue-50 relative">
+      <div className="h-96 w-full rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer shadow hover:bg-blue-50 relative border border-[#fad74f]">
         <div className="relative">
           <Image
             src={onImage}
             alt="event-image"
             width={500}
             height={500}
-            className="rounded-2xl h-44 object-cover w-full"
+            className="rounded-2xl h-64 object-cover w-full"
           />
-          <span className="p-2 rounded-2xl bg-white absolute top-2 left-2 text-xs font-medium">
-            {onTags}
-          </span>
+          {onTags.length > 0 ? (
+            <span className="p-2 rounded-2xl bg-white absolute top-2 left-2 text-xs font-medium border">
+              {onTags}
+            </span>
+          ) : (
+            ""
+          )}
         </div>
-        <div className="p-2">
-          <h1 className="font-bold truncate">{onTitle}</h1>
-          <p className="break-all">{truncateText(onPost, 50)}</p>
+        <div className="p-2 text-black">
+          <div className="font-bold truncate text-lg">{onTitle}</div>
+          <div className="break-all" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 50) }}/>
         </div>
         <div className="p-2 absolute bottom-0 text-right w-full">
           <p className="font-medium text-blue-400">{onAuthor}</p>

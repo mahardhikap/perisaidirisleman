@@ -34,12 +34,12 @@ export default function MenuDashboard() {
       <div className="mb-3 p-3 font-medium">
         Welcome, {localStorage.getItem('username')}
       </div>
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-col list-none p-0 m-0">
         <Link href={'/list-event'}>
           <li
             className={`${
               path === '/list-event' ? 'bg-blue-100' : 'bg-white'
-            } p-3 cursor-pointer`}
+            } p-3 cursor-pointer m-0 text-black`}
           >
             List Event
           </li>
@@ -48,7 +48,7 @@ export default function MenuDashboard() {
           <li
             className={`${
               path === '/list-member' ? 'bg-blue-100' : 'bg-white'
-            } p-3 cursor-pointer`}
+            } p-3 cursor-pointer m-0 text-black`}
           >
             List Member
           </li>
@@ -57,7 +57,7 @@ export default function MenuDashboard() {
           <li
             className={`${
               path === '/add-event' ? 'bg-blue-100' : 'bg-white'
-            } p-3 cursor-pointer`}
+            } p-3 cursor-pointer m-0 text-black`}
           >
             Add Event
           </li>
@@ -66,7 +66,7 @@ export default function MenuDashboard() {
           <li
             className={`${
               path === '/add-member' ? 'bg-blue-100' : 'bg-white'
-            } p-3 cursor-pointer`}
+            } p-3 cursor-pointer m-0 text-black`}
           >
             Add Member
           </li>
@@ -75,12 +75,12 @@ export default function MenuDashboard() {
           <li
             className={`${
               path === '/edit-profile' ? 'bg-blue-100' : 'bg-white'
-            } p-3 cursor-pointer`}
+            } p-3 cursor-pointer m-0 text-black`}
           >
             Edit Profile
           </li>
         </Link>
-        <li className="p-3 cursor-pointer" onClick={() => handleLogout()}>
+        <li className="p-3 cursor-pointer m-0" onClick={() => handleLogout()}>
           Logout
         </li>
       </ul>

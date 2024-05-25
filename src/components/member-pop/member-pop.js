@@ -14,7 +14,7 @@ export default function MemberPop({
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="bg-white p-4 rounded-lg shadow-lg z-10 w-10/12 sm:w-6/12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <div className="col-span-1 flex justify-center items-center">
+          <div className="col-span-1">
             <Image
               src={
                 image === ('null' || null || 'undefined' || undefined)
@@ -24,10 +24,10 @@ export default function MemberPop({
               alt="member"
               height={100}
               width={100}
-              className="w-40 h-60 object-cover border-2 border-yellow-200 rounded-lg"
+              className="w-full h-full object-cover border rounded-lg"
             />
           </div>
-          <div className="col-span-2 flex flex-col justify-center">
+          <div className="col-span-2 flex flex-col">
             <p className="font-bold">Nama Lengkap:</p>
             <p className="mb-2 truncate">{fullName}</p>
             <p className="font-bold ">Nomor Induk:</p>

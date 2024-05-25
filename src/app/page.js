@@ -22,7 +22,7 @@ export default function Home() {
         <Third />
       </div>
       <div className="rounded-t-3xl mx-auto container bg-[#fad74f] mt-[-50px]">
-        <div className="container mx-auto w-11/12 sm:w-10/12 py-20">
+        <div className="container mx-auto w-11/12 sm:w-10/12 py-10">
           <Footer />
         </div>
       </div>
