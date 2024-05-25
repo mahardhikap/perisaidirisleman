@@ -1,24 +1,24 @@
-import axios from "axios";
-import Swal from "sweetalert2";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const AddEventDashboard = async (data) => {
+const EditDetailMember = async (idMember, data) => {
   try {
-    const response = await axios.post(
-      `http://localhost:3001/add/article`,
+    const response = await axios.put(
+      `http://localhost:3001/edit/member/${idMember}`,
       data,
-      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+      { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
     );
     Swal.fire({
-      icon: "success",
+      icon: 'success',
       title: response.data.message,
       showConfirmButton: false,
       timer: 1500,
     });
     return response.data; // Mengembalikan data yang diterima dari panggilan API
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error);
     Swal.fire({
-      icon: "error",
+      icon: 'error',
       title: error.response.data.message,
       showConfirmButton: false,
       timer: 1500,
@@ -27,4 +27,4 @@ const AddEventDashboard = async (data) => {
   }
 };
 
-export default AddEventDashboard;
+export default EditDetailMember;

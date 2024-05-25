@@ -13,6 +13,7 @@ import FormEvent from './editor/add-event';
 import FormProfile from './editor/edit-profile';
 import MemberPop from './member-pop/member-pop';
 import MemberNotFound from './member-pop/member-notfound';
+import FormEditMember from './editor/edit-member';
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   FormProfile,
   MemberPop,
   MemberNotFound,
+  FormEditMember
 };

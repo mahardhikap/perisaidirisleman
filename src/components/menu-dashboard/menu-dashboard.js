@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 export default function MenuDashboard() {
   const path = usePathname();
   const router = useRouter();
-  console.log(path);
 
   const handleLogout = () => {
     Swal.fire({

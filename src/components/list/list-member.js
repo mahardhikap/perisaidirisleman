@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import { ListMemberDashboard, DeleteMember } from "@/libs";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function FormListMember() {
+  const navigate = useRouter()
   const [memberUsername, setMemberUsername] = useState("");
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const getListMember = async () => {
     const result = await ListMemberDashboard(memberUsername, page);
-    // console.log(result);
     setData(result?.data);
   };
   useEffect(() => {
@@ -101,7 +102,7 @@ export default function FormListMember() {
               </div>
             </div>
             <div className="col-span-5 lg:col-span-1 flex flex-col gap-3 p-2">
-              <button className="p-3 bg-yellow-400 text-white font-medium truncate">
+              <button onClick={()=> navigate.push(`/edit-member/${item.member_id}`)} className="p-3 bg-yellow-400 text-white font-medium truncate">
                 Edit
               </button>
               <button

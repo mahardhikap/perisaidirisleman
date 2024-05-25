@@ -8,7 +8,6 @@ const AddMemberDashboard = async (data) => {
       data,
       { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
     );
-    // console.log(response.data);
     Swal.fire({
       icon: 'success',
       title: response.data.message,

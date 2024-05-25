@@ -9,6 +9,8 @@ import AddEventDashboard from './addEvent';
 import AddMemberDashboard from './addMember';
 import DeleteMember from './deleteMember';
 import GetDetailEvent from './detailEvent';
+import GetDetailMember from './getDetailMember';
+import EditDetailMember from './editDetailMember';
 
 export {
   janji,
@@ -21,5 +23,7 @@ export {
   AddEventDashboard,
   AddMemberDashboard,
   DeleteMember,
-  GetDetailEvent
+  GetDetailEvent,
+  GetDetailMember,
+  EditDetailMember
 };
