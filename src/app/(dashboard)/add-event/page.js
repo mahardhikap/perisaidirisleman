@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import MenuDashboard from "@/components/menu-dashboard/menu-dashboard";
 import { PrivateRoute } from "@/context/page";
 import React, { useState, useEffect } from "react";
@@ -6,9 +6,12 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const CustomEditor = dynamic(() => import('../../../components/ckeditor/custom-editor'), { ssr: false });
+const CustomEditor = dynamic(
+  () => import("../../../components/ckeditor/custom-editor"),
+  { ssr: false }
+);
 
 export default function AddEvent() {
   const [inputEvent, setInputEvent] = useState({
@@ -75,7 +78,7 @@ export default function AddEvent() {
         image: URL.createObjectURL(e.target.files[0]),
       });
   };
-  
+
   return (
     <PrivateRoute>
       <div className="container mx-auto">
@@ -104,25 +107,30 @@ export default function AddEvent() {
                 onChange={handleChangeImage}
                 className="hidden"
               />
-              <div className="flex flex-col gap-5 mb-5">
+              <div className="flex flex-col gap-3 mb-5">
+              <label>Judul</label>
                 <input
                   type="text"
                   name="title"
                   value={inputEvent.title}
                   onChange={handleChangeInput}
-                  placeholder="Title"
+                  placeholder="Masukan judul"
                   className="p-3 outline-none bg-white rounded-md w-full"
                 />
-                <CustomEditor 
+                <label>Artikel</label>
+                <CustomEditor
                   initialData={inputEvent.post_article}
-                  onChange={(data) => setInputEvent({ ...inputEvent, post_article: data })}
+                  onChange={(data) =>
+                    setInputEvent({ ...inputEvent, post_article: data })
+                  }
                 />
+                <label>Tags</label>
                 <input
                   type="text"
                   name="tags"
                   value={inputEvent.tags}
                   onChange={handleChangeInput}
-                  placeholder="Tags"
+                  placeholder="Masukan hashtag"
                   className="p-3 outline-none bg-white rounded-md w-full"
                 />
                 <button

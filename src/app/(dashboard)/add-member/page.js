@@ -86,7 +86,7 @@ export default function AddMember() {
             <MenuDashboard />
           </div>
           <div className="col-span-3 pt-5 lg:p-5">
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
               <label htmlFor="file" className="block">
                 <Image
                   src={
@@ -106,30 +106,34 @@ export default function AddMember() {
                 onChange={handleChangePhoto}
                 className="hidden"
               />
+              <label>Nama Lengkap</label>
               <input
                 type="text"
                 name="fullname"
                 value={inputMember.fullname}
                 onChange={handleChangeInput}
                 className="p-3 rounded-md"
-                placeholder="Nama lengkap"
+                placeholder="Masukan nama lengkap"
               />
+              <label>Nomor Induk</label>
               <input
                 type="text"
                 name="id_number"
                 value={inputMember.id_number}
                 onChange={handleChangeInput}
                 className="p-3 rounded-md"
-                placeholder="Nomor induk"
+                placeholder="Masukan nomor induk"
               />
+              <label>Tempat, Tanggal Lahir</label>
               <input
                 type="text"
                 name="birth"
                 value={inputMember.birth}
                 onChange={handleChangeInput}
                 className="p-3 rounded-md"
-                placeholder="Tempat, tanggal lahir"
+                placeholder="Masukan tempat, tanggal lahir"
               />
+              <label>Tingkatan</label>
               <select
                 name="grade"
                 value={inputMember.grade}
@@ -155,12 +159,13 @@ export default function AddMember() {
                 </option>
                 <option value="Kuning (Pendekar)">Kuning (Pendekar)</option>
               </select>
+              <label>Motto</label>
               <input
                 type="text"
                 name="motto"
                 value={inputMember.motto}
                 onChange={handleChangeInput}
-                placeholder="Motto hidup (Max 100 huruf)"
+                placeholder="Masukan motto hidup (Max 100 huruf)"
                 className="p-3 rounded-md"
               />
               <button
