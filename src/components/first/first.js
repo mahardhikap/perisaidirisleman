@@ -76,9 +76,9 @@ export default function First() {
           <Image
             src={"/images/dirdjo.jpg"}
             alt="Pak Dirdjo"
-            width={300}
-            height={300}
-            className="max-h-96 object-cover rounded-xl shadow"
+            width={500}
+            height={500}
+            className="max-h-96 max-w-72 object-cover rounded-xl shadow"
           />
           <p className="text-center font-light text-black lg:text-white">
             R.M. Soebandiman Dirdjoatmojo

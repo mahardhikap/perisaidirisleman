@@ -24,7 +24,7 @@ export default function MemberPop({
               alt="member"
               height={500}
               width={500}
-              className="w-full h-full object-cover border rounded-lg"
+              className="w-56 h-56 object-cover border rounded-lg"
             />
           </div>
           <div className="col-span-2 flex flex-col">
