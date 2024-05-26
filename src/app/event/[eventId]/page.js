@@ -13,7 +13,7 @@ export default function DetailEvent() {
   const GetDetailEvent = async (idEvent) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/article/${idEvent}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/article/${idEvent}`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {

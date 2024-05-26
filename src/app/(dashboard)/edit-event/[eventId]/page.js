@@ -30,7 +30,7 @@ export default function EditEvent() {
   const GetDetailEvent = async (idEvent) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/article/${idEvent}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/article/${idEvent}`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
@@ -43,7 +43,7 @@ export default function EditEvent() {
     try {
       setLoading(true);
       const response = await axios.put(
-        `http://localhost:3001/edit/article/${idEvent}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/edit/article/${idEvent}`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -103,7 +103,6 @@ export default function EditEvent() {
     try {
       const response = await GetDetailEvent(params.eventId);
       if (response.status === 200) {
-        console.log("ini isi response", response);
         setDetailData(response);
       } else {
         console.error("Required fields are missing in the response data.");
@@ -126,8 +125,6 @@ export default function EditEvent() {
       image: detailData?.data?.image,
     });
   }, [detailData]);
-
-  console.log("ini isi inputevent", inputEvent);
 
   return (
     <PrivateRoute>

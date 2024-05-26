@@ -22,7 +22,7 @@ export default function SignIn() {
   };
   const LoginUser = async (data) => {
     try {
-      const response = await axios.post(`http://localhost:3001/login`, data);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, data);
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
       console.error('Error fetching data:', error);

@@ -28,7 +28,7 @@ export default function AddEvent() {
     try {
       setLoading(true)
       const response = await axios.post(
-        `http://localhost:3001/add/article`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/add/article`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

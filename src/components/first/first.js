@@ -13,7 +13,7 @@ export default function First() {
   const SearchMember = async ({ memberNumber }) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/member?searchby=id_number&search=${memberNumber}&sortby=created_at&sort=ASC&limit=1&page=1`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/member?searchby=id_number&search=${memberNumber}&sortby=created_at&sort=ASC&limit=1&page=1`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {

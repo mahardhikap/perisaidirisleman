@@ -5,9 +5,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function AddMember() {
   const [loading, setLoading] = useState(false);
+  const navigate = useRouter()
   const [inputMember, setInputMember] = useState({
     fullname: "",
     id_number: "",
@@ -22,7 +24,7 @@ export default function AddMember() {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:3001/add/member`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/add/member`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -59,7 +61,7 @@ export default function AddMember() {
     formData.append("grade", inputMember.grade);
     formData.append("motto", inputMember.motto);
     formData.append("photo", photoUpload);
-    await AddMemberDashboard(formData);
+    const response = await AddMemberDashboard(formData);
     setInputMember({
       fullname: "",
       id_number: "",
@@ -68,6 +70,9 @@ export default function AddMember() {
       motto: "",
       photo: "",
     });
+    if(response.status === 201){
+      navigate.push('/list-member')
+    }
   };
 
   const handleChangeInput = (e) => {

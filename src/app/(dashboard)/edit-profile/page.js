@@ -19,7 +19,7 @@ export default function EditProfile() {
 
   const GetDetailUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/user`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       return response.data;
@@ -33,7 +33,7 @@ export default function EditProfile() {
     try {
       setLoading(true);
       const response = await axios.put(
-        `http://localhost:3001/edit/user`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/edit/user`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

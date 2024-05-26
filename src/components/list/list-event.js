@@ -23,7 +23,7 @@ export default function FormListEvent() {
   const ListEventDashboard = async (onPage, onSearch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/my/article?search=${onSearch}&searchby=title&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/my/article?search=${onSearch}&searchby=title&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
@@ -36,7 +36,7 @@ export default function FormListEvent() {
   const DeleteEvent = async (idToDelete) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/delete/article/${idToDelete}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/delete/article/${idToDelete}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API

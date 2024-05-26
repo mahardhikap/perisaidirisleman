@@ -15,7 +15,7 @@ export default function Event() {
   const SearchEvent = async ({ searchTitle, onPage }) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/article?searchby=title&search=${searchTitle}&sortby=created_at&sort=DESC&limit=6&page=${onPage}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/article?searchby=title&search=${searchTitle}&sortby=created_at&sort=DESC&limit=6&page=${onPage}`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {

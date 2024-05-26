@@ -14,7 +14,7 @@ export default function FormListMember() {
   const ListMemberDashboard = async (onFullName, onPage) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/member?searchby=fullname&search=${onFullName}&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/member?searchby=fullname&search=${onFullName}&sortby=created_at&sort=DESC&limit=5&page=${onPage}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
@@ -27,7 +27,7 @@ export default function FormListMember() {
   const DeleteMember = async (idToDelete) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/delete/member/${idToDelete}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/delete/member/${idToDelete}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API

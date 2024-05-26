@@ -25,7 +25,7 @@ export default function EditMember() {
   const GetDetailMember = async (idMember) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/member/${idMember}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/member/${idMember}`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
@@ -38,7 +38,7 @@ export default function EditMember() {
     try {
       setLoading(true);
       const response = await axios.put(
-        `http://localhost:3001/edit/member/${idMember}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/edit/member/${idMember}`,
         data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
