@@ -24,7 +24,7 @@
       @apply text-base font-semibold text-black;
     }
     p {
-      @apply text-lg text-black;
+      @apply text-base text-black my-3;
     }
     a {
       @apply text-blue-500 hover:text-blue-700;
@@ -35,13 +35,13 @@
       margin-bottom: 1rem;
     }
     table {
-      @apply w-full border border-collapse;
+      @apply w-full border border-collapse text-base;
     }
     th {
-      @apply bg-gray-200 p-2 text-left font-semibold;
+      @apply bg-gray-200 p-2 text-left font-semibold text-base;
     }
     td {
-      @apply border-2 border-black p-2;
+      @apply border-2 border-black p-2 text-base;
     }
     tr:hover {
       @apply bg-gray-100;

@@ -89,7 +89,7 @@ export default function Event() {
             alt="event-pic"
             width={1000}
             height={1000}
-            className="max-h-96 rounded-2xl object-cover w-full shadow"
+            className="h-96 rounded-2xl object-cover w-full shadow"
           />
         </div>
         <div className="mx-auto container w-1!/12">
@@ -97,12 +97,12 @@ export default function Event() {
             <h1 className="mt-10 mb-5 font-extrabold text-3xl bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-700">
               NEW EVENTS
             </h1>
-            <div className="flex justify-end">
+            <div className="flex justify-end mb-10">
               <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="p-4 text-md w-1/2 mb-3 rounded-lg border outline-none border-2 border-[#fad74f]"
+                className="p-4 text-md w-full sm:w-1/2 mb-3 rounded-lg border outline-none border-2 border-[#fad74f]"
                 placeholder="Cari judul, enter"
               />
             </div>

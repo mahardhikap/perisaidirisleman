@@ -12,10 +12,12 @@ export default function FormListEvent() {
   const navigate = useRouter()
 
   const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
+    // Remove HTML tags from text
+    const plainText = text.replace(/<[^>]*>/g, '');
+    if (plainText.length > maxLength) {
+      return plainText.substring(0, maxLength) + "...";
     }
-    return text;
+    return plainText;
   };
 
   const ListEventDashboard = async (onPage, onSearch) => {
@@ -114,7 +116,7 @@ export default function FormListEvent() {
       </div>
       {data?.rows?.map((item, index) => {
         return (
-          <div className="grid grid-cols-5 lg:grid-cols-6 mb-2 bg-white p-2 rounded-lg" key={index}>
+          <div className="grid grid-cols-5 lg:grid-cols-6 mb-2 bg-white p-2 rounded-lg max-h-[430px] md:max-h-[400px] lg:max-h-[260px] sm:max-h-[260px] overflow-hidden" key={index}>
             <div className="col-span-5 lg:col-span-2 relative">
               <Image
                 src={

@@ -24,8 +24,8 @@ export default function Header() {
           <Link href={'/'}>
             <li
               className={`${
-                path === '/' ? 'text-black' : 'text-white'
-              } cursor-pointer transition duration-500 ease-in-out hover:text-black`}
+                path === '/' ? 'underline underline-offset-8' : ''
+              } cursor-pointer transition duration-500 ease-in-out text-white`}
             >
               Home
             </li>
@@ -33,8 +33,8 @@ export default function Header() {
           <Link href={'/event'}>
             <li
               className={`${
-                path === '/event' ? 'text-black' : 'text-white'
-              } cursor-pointer transition duration-500 ease-in-out hover:text-black`}
+                path === '/event' ? 'underline underline-offset-8' : ''
+              } cursor-pointer transition duration-500 ease-in-out text-white`}
             >
               Event
             </li>
@@ -43,7 +43,7 @@ export default function Header() {
       </div>
       <div>
         <Link href={'/signin'}>
-          <button className="font-semibold p-3 border border-white hover:border-none rounded-2xl text-white transition duration-500 ease-in-out hover:bg-green-400">
+          <button className="font-semibold p-3 hover:bg-white hover:text-[#fad74f] rounded-2xl text-white transition duration-500 ease-in-out">
             Sign In
           </button>
         </Link>

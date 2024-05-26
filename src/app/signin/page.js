@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function SignIn() {
   const router = useRouter();
@@ -25,6 +26,12 @@ export default function SignIn() {
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
       console.error('Error fetching data:', error);
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
     }
   };
@@ -85,7 +92,7 @@ export default function SignIn() {
                 SUBMIT
               </button>
               <Link href={'/'}>
-                <p className="text-center text-sm font-light hover:text-blue-500 cursor-pointer transition duration-500 ease-in-out">
+                <p className="text-center text-base font-light hover:text-blue-500 cursor-pointer transition duration-500 ease-in-out">
                   &larr; Kembali ke Home
                 </p>
               </Link>

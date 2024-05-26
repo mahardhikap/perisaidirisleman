@@ -17,7 +17,7 @@ export default function First() {
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
     }
   };
@@ -62,8 +62,9 @@ export default function First() {
               Perisai Diri Cabang Sleman
             </p>
             <button
-              className="p-3 rounded-lg bg-[#fad74f] mt-5 font-bold text-white transition duration-500 ease-in-out hover:bg-green-400"
+              className={`p-3 rounded-lg bg-[#fad74f] mt-5 font-bold text-white transition duration-500 ease-in-out ${memberNumber === '' ? 'bg-gray-300' : 'hover:bg-green-400'}`}
               onClick={handleSearchClick}
+              disabled={memberNumber === ''}
             >
               Cari Anggota
             </button>
@@ -94,9 +95,7 @@ export default function First() {
           image={data[0]?.photo}
         />
       ) : (
-        showPopup && (
-          <MemberNotFound onClose={handleClosePopup}/>
-        )
+        showPopup && <MemberNotFound onClose={handleClosePopup} />
       )}
     </div>
   );

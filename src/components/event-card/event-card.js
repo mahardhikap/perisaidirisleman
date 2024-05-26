@@ -10,14 +10,16 @@ export default function EventCard({
   onDate
 }) {
   const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
+    // Remove HTML tags from text
+    const plainText = text.replace(/<[^>]*>/g, '');
+    if (plainText.length > maxLength) {
+      return plainText.substring(0, maxLength) + "...";
     }
-    return text;
+    return plainText;
   };
   return (
     <div>
-      <div className="h-96 w-full rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer border-2 hover:bg-blue-50 relative border">
+      <div className="h-[430px] w-full rounded-2xl bg-white transition duration-500 ease-in-out cursor-pointer border-2 hover:bg-blue-50 relative border overflow-hidden">
         <div className="relative">
           <Image
             src={onImage}
@@ -35,12 +37,12 @@ export default function EventCard({
           )}
         </div>
         <div className="p-2 text-black">
-          <div className="font-bold truncate text-lg">{onTitle}</div>
-          <div className="break-all" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 50) }}/>
+          <div className="font-bold text-lg truncate">{onTitle}</div>
+          <div className="break-all" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 100) }}/>
         </div>
         <div className="p-2 absolute bottom-0 text-right w-full">
-          <p className="font-medium">{onDate}</p>
-          <p className="font-medium text-blue-400">{onAuthor}</p>
+          <div className="font-medium text-black">{onDate}</div>
+          <div className="font-medium text-blue-400">{truncateText(onAuthor, 15)}</div>
         </div>
       </div>
     </div>
