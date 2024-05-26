@@ -7,6 +7,7 @@ export default function EventCard({
   onTitle,
   onPost,
   onAuthor,
+  onDate
 }) {
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -38,6 +39,7 @@ export default function EventCard({
           <div className="break-all" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 50) }}/>
         </div>
         <div className="p-2 absolute bottom-0 text-right w-full">
+          <p className="font-medium">{onDate}</p>
           <p className="font-medium text-blue-400">{onAuthor}</p>
         </div>
       </div>

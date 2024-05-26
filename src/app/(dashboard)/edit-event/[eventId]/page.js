@@ -14,8 +14,9 @@ const CustomEditor = dynamic(
   { ssr: false }
 );
 
-export default function AddEvent() {
+export default function EditEvent() {
   const params = useParams();
+  const [loading, setLoading] = useState(false);
   const [detailData, setDetailData] = useState([]);
   const [inputEvent, setInputEvent] = useState({
     title: "",
@@ -40,6 +41,7 @@ export default function AddEvent() {
 
   const EditEventDashboard = async (data, idEvent) => {
     try {
+      setLoading(true);
       const response = await axios.put(
         `http://localhost:3001/edit/article/${idEvent}`,
         data,
@@ -55,6 +57,7 @@ export default function AddEvent() {
       });
       return response.data;
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching data:", error);
       Swal.fire({
         icon: "error",
@@ -63,6 +66,8 @@ export default function AddEvent() {
         timer: 1500,
       });
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,7 +103,7 @@ export default function AddEvent() {
     try {
       const response = await GetDetailEvent(params.eventId);
       if (response.status === 200) {
-        console.log('ini isi response', response)
+        console.log("ini isi response", response);
         setDetailData(response);
       } else {
         console.error("Required fields are missing in the response data.");
@@ -134,6 +139,7 @@ export default function AddEvent() {
           <div className="col-span-3 pt-5 lg:p-5">
             <div>
               <label htmlFor="file">
+                *Image max 5 MB
                 {inputEvent?.image !== "null" &&
                 inputEvent?.image !== "" &&
                 inputEvent?.image !== null ? (
@@ -147,7 +153,8 @@ export default function AddEvent() {
                 ) : (
                   <Image
                     src={
-                      (imageUpload && inputEvent?.image) || "/images/noimage.png"
+                      (imageUpload && inputEvent?.image) ||
+                      "/images/noimage.png"
                     }
                     alt="Preview"
                     className="mb-5 rounded-md border border-gray-300 w-96 h-60 rounded-lg object-cover"
@@ -172,7 +179,7 @@ export default function AddEvent() {
                   value={inputEvent.title}
                   onChange={handleChangeInput}
                   placeholder="Masukan judul"
-                  className="p-3 outline-none bg-white rounded-md w-full"
+                  className="p-3 outline-none bg-white rounded-md w-full border"
                 />
                 <label>Artikel</label>
                 <CustomEditor
@@ -188,13 +195,18 @@ export default function AddEvent() {
                   value={inputEvent.tags}
                   onChange={handleChangeInput}
                   placeholder="Masukan hashtag"
-                  className="p-3 outline-none bg-white rounded-md w-full"
+                  className="p-3 outline-none bg-white rounded-md w-full border"
                 />
                 <button
-                  className="p-3 bg-[#dc0000] rounded-md font-bold text-white hover:bg-green-400 transition duration-500 ease-in-out"
+                  className={`p-3 ${
+                    loading
+                      ? "bg-gray-300 hover:none"
+                      : "bg-[#dc0000] hover:bg-green-400"
+                  }  rounded-md font-bold text-white transition duration-500 ease-in-out`}
                   onClick={handleEditEvent}
+                  disabled={loading}
                 >
-                  Tambahkan
+                  {loading ? "Mengupload..." : "Update Event"}
                 </button>
               </div>
             </div>

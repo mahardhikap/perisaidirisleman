@@ -89,6 +89,21 @@ export default function FormListEvent() {
     });
   };
 
+  const formatDateInIndonesiaTime = (dateStr) => {
+    const date = new Date(dateStr);
+    const options = {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Jakarta",
+      timeZoneName: "short",
+    };
+    return date.toLocaleDateString("id-ID", options).replace("pukul", "|");
+  };
+
   useEffect(() => {
     handleGetListEventDashboard();
   }, [page]);
@@ -122,8 +137,8 @@ export default function FormListEvent() {
             </div>
             <div className="col-span-4 lg:col-span-3 py-2 lg:px-2">
               <h2 className="font-medium truncate">{item?.title}</h2>
-              <div className="break-all" dangerouslySetInnerHTML={{__html: truncateText(item?.post_article, 70)}}/>
-              <p className="font-light">{item?.created_at}</p>
+              <div className="break-all" dangerouslySetInnerHTML={{__html: truncateText(item?.post_article, 100)}}/>
+              <p className="font-medium">{formatDateInIndonesiaTime(item?.created_at)}</p>
             </div>
             <div className="col-span-1 lg:col-span-1 flex flex-col gap-5">
               <button className="p-3 bg-yellow-400 text-white font-medium truncate" onClick={()=>navigate.push(`/edit-event/${item?.article_id}`)}>

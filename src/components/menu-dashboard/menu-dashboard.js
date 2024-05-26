@@ -1,15 +1,25 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
+import { jwtDecode } from 'jwt-decode';
 
 export default function MenuDashboard() {
   const path = usePathname();
   const router = useRouter();
+  const [username, setUsername] = useState()
 
   // Check if localStorage is available
-  const username = typeof window !== 'undefined' ? localStorage.getItem('username') : null;
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  const whoIs = async () => {
+    const whatUser = jwtDecode(token)
+    setUsername(whatUser.username)
+  }
+
+  useEffect(()=>{
+    whoIs()
+  },[])
 
   const handleLogout = () => {
     Swal.fire({
@@ -35,8 +45,8 @@ export default function MenuDashboard() {
   return (
     <div>
       {username && (
-        <div className="mb-3 p-3 font-medium">
-          Welcome, {username}
+        <div className="mb-3 p-3 font-medium truncate">
+          Welcome, <span className='font-bold'>{username}</span>
         </div>
       )}
       <ul className="flex flex-col list-none p-0 m-0">

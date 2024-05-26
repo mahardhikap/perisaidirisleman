@@ -24,7 +24,7 @@
       @apply text-base font-semibold text-black;
     }
     p {
-      @apply text-base font-sans text-black;
+      @apply text-lg text-black;
     }
     a {
       @apply text-blue-500 hover:text-blue-700;

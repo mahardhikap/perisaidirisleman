@@ -17,7 +17,7 @@ export default function DetailEvent() {
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
     }
   };
@@ -31,49 +31,66 @@ export default function DetailEvent() {
     }
   };
 
+  const formatDateInIndonesiaTime = (dateStr) => {
+    const date = new Date(dateStr);
+    const options = {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Jakarta",
+      timeZoneName: "short",
+    };
+    return date.toLocaleDateString("id-ID", options).replace("pukul", "|");
+  };
+
   useEffect(() => {
     getDetailEvent();
   }, []);
   return (
     <>
-      <div className="sticky top-0 bg-[#fad74f] rounded-b-3xl">
-        <div className="container w-11/12 sm:w-10/12 mx-auto">
-          <Header />
+      <div className="bg-white">
+        <div className="sticky top-0 bg-[#fad74f] rounded-b-3xl">
+          <div className="container w-11/12 sm:w-10/12 mx-auto">
+            <Header />
+          </div>
         </div>
-      </div>
-      <div className="container mx-auto w-11/12 sm:w-10/12">
-        <div className="text-center my-10 text-md sm:text-lg md:text-xl lg:text-2xl font-bold">
-          {data?.title}
-        </div>
-        <div className="flex justify-center my-2">
-          <Image
-            src={
-              data?.image === ("null" || null || undefined || "undefined")
-                ? "/images/noimage.png"
-                : data?.image
-            }
-            className="w-full h-70vw sm:h-50vw lg:h-40vw bg-slate-200 rounded-xl object-cover border shadow-sm"
-            width={500}
-            height={500}
-            alt="detail-event-image"
+        <div className="container mx-auto w-11/12 sm:w-8/12">
+          <div className="text-center my-10 text-md sm:text-lg md:text-xl lg:text-2xl font-bold">
+            {data?.title}
+          </div>
+          <div className="flex justify-center my-2">
+            <Image
+              src={
+                data?.image === ("null" || null || undefined || "undefined")
+                  ? "/images/noimage.png"
+                  : data?.image
+              }
+              className="w-full h-70vw sm:h-50vw lg:h-[640px] bg-slate-200 rounded-xl object-cover border shadow-sm"
+              width={500}
+              height={500}
+              alt="detail-event-image"
+            />
+          </div>
+          <div className="mb-10">
+            <p className="font-medium">
+              {formatDateInIndonesiaTime(data?.created_at)} - <span className="text-blue-400">{data?.username}</span>
+            </p>
+          </div>
+          <div
+            className="text-sm sm:text-md md:text-lg"
+            dangerouslySetInnerHTML={{ __html: data?.post_article }}
           />
-        </div>
-        <div className="mb-10">
-          <p>
-            {data?.created_at} - {data?.username}
-          </p>
-        </div>
-        <div
-          className="text-sm sm:text-md md:text-lg"
-          dangerouslySetInnerHTML={{ __html: data?.post_article }}
-        />
-        {/* <div className="text-sm sm:text-md md:text-lg">
+          {/* <div className="text-sm sm:text-md md:text-lg">
           {data?.post_article}
         </div> */}
-      </div>
-      <div className="rounded-t-3xl mx-auto container bg-[#fad74f] mt-10">
-        <div className="container mx-auto w-11/12 sm:w-10/12 py-20">
-          <Footer />
+        </div>
+        <div className="rounded-t-3xl mx-auto container bg-[#fad74f] mt-10">
+          <div className="container mx-auto w-11/12 sm:w-10/12 py-20">
+            <Footer />
+          </div>
         </div>
       </div>
     </>

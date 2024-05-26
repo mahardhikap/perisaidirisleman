@@ -60,6 +60,18 @@ export default function Event() {
     }
   };
 
+  const formatDateInIndonesiaTime = (dateStr) => {
+    const date = new Date(dateStr);
+    const options = {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    };
+    return date.toLocaleDateString("id-ID", options);
+  };
+
+
   useEffect(() => {
     handleShowEvent();
   }, [page]);
@@ -109,6 +121,7 @@ export default function Event() {
                       onTitle={item.title}
                       onPost={item.post_article}
                       onAuthor={item.username}
+                      onDate={formatDateInIndonesiaTime(item.created_at)}
                     />
                   </Link>
                 );

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 export default function AddMember() {
+  const [loading, setLoading] = useState(false);
   const [inputMember, setInputMember] = useState({
     fullname: "",
     id_number: "",
@@ -19,6 +20,7 @@ export default function AddMember() {
 
   const AddMemberDashboard = async (data) => {
     try {
+      setLoading(true);
       const response = await axios.post(
         `http://localhost:3001/add/member`,
         data,
@@ -34,6 +36,7 @@ export default function AddMember() {
       });
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching data:", error);
       Swal.fire({
         icon: "error",
@@ -42,6 +45,8 @@ export default function AddMember() {
         timer: 1500,
       });
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,6 +93,7 @@ export default function AddMember() {
           <div className="col-span-3 pt-5 lg:p-5">
             <div className="flex flex-col gap-3">
               <label htmlFor="file" className="block">
+              *Photo max 5 MB
                 <Image
                   src={
                     (photoUpload && inputMember.photo) || "/images/noimage.png"
@@ -112,7 +118,7 @@ export default function AddMember() {
                 name="fullname"
                 value={inputMember.fullname}
                 onChange={handleChangeInput}
-                className="p-3 rounded-md"
+                className="p-3 rounded-md border"
                 placeholder="Masukan nama lengkap"
               />
               <label>Nomor Induk</label>
@@ -121,7 +127,7 @@ export default function AddMember() {
                 name="id_number"
                 value={inputMember.id_number}
                 onChange={handleChangeInput}
-                className="p-3 rounded-md"
+                className="p-3 rounded-md border"
                 placeholder="Masukan nomor induk"
               />
               <label>Tempat, Tanggal Lahir</label>
@@ -130,7 +136,7 @@ export default function AddMember() {
                 name="birth"
                 value={inputMember.birth}
                 onChange={handleChangeInput}
-                className="p-3 rounded-md"
+                className="p-3 rounded-md border"
                 placeholder="Masukan tempat, tanggal lahir"
               />
               <label>Tingkatan</label>
@@ -138,7 +144,7 @@ export default function AddMember() {
                 name="grade"
                 value={inputMember.grade}
                 onChange={handleChangeInput}
-                className="p-3 rounded-md"
+                className="p-3 rounded-md border"
               >
                 <option value="" disabled>
                   Pilih tingkatan
@@ -166,13 +172,19 @@ export default function AddMember() {
                 value={inputMember.motto}
                 onChange={handleChangeInput}
                 placeholder="Masukan motto hidup (Max 100 huruf)"
-                className="p-3 rounded-md"
+                className="p-3 rounded-md border"
+                maxLength={100}
               />
               <button
-                className="p-3 bg-[#dc0000] rounded-md font-bold text-white hover:bg-green-400 transition duration-500 ease-in-out"
+                className={`p-3 ${
+                  loading
+                    ? "bg-gray-300 hover:none"
+                    : "bg-[#dc0000] hover:bg-green-400"
+                }  rounded-md font-bold text-white transition duration-500 ease-in-out`}
                 onClick={handleAddMember}
+                disabled={loading}
               >
-                Tambahkan
+                {loading ? "Mengupload..." : "Tambahkan"}
               </button>
             </div>
           </div>

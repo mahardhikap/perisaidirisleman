@@ -30,9 +30,9 @@ export default function SignIn() {
   };
   const handleLogin = async () => {
     const resultLogin = await LoginUser(dataLogin);
-    localStorage.setItem('user_id', resultLogin?.data?.user_id);
+    // localStorage.setItem('user_id', resultLogin?.data?.user_id);
     localStorage.setItem('token', resultLogin?.data?.token);
-    localStorage.setItem('username', resultLogin?.data?.username);
+    // localStorage.setItem('username', resultLogin?.data?.username);
     router.replace('/list-event');
   };
 

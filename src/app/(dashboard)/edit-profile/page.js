@@ -18,21 +18,25 @@ export default function EditProfile() {
                   image
                 </div>
               </div>
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3">
+                <label>Username</label>
                 <input
                   type="text"
                   placeholder="Username"
-                  className="p-3 rounded-md outline-none"
+                  className="p-3 rounded-md outline-none border"
                 />
+                <label>Email</label>
                 <input
+                  disabled="true"
                   type="email"
                   placeholder="Email"
-                  className="p-3 rounded-md outline-none"
+                  className="p-3 rounded-md outline-none border"
                 />
+                <label>Password</label>
                 <input
                   type="password"
                   placeholder="Password"
-                  className="p-3 rounded-md outline-none"
+                  className="p-3 rounded-md outline-none border"
                 />
                 <button className="p-3 bg-[#dc0000] rounded-md font-bold text-white hover:bg-green-400 transition duration-500 ease-in-out">
                   Update Profile
