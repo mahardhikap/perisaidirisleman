@@ -58,7 +58,7 @@ export default function DetailEvent() {
           </div>
         </div>
         <div className="container mx-auto w-11/12 sm:w-8/12">
-          <div className="text-center my-10 text-md sm:text-lg md:text-xl lg:text-2xl font-bold">
+          <div className="text-center my-10 text-lg sm:text-lg md:text-xl lg:text-2xl font-bold">
             {data?.title}
           </div>
           <div className="flex justify-center my-2">
