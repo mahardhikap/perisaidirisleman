@@ -22,18 +22,18 @@ export default function MemberPop({
                   : image
               }
               alt="member"
-              height={100}
-              width={100}
+              height={500}
+              width={500}
               className="w-full h-full object-cover border rounded-lg"
             />
           </div>
           <div className="col-span-2 flex flex-col">
-            <p className="font-bold">Nama Lengkap:</p>
-            <p className="mb-2 truncate">{fullName}</p>
-            <p className="font-bold ">Nomor Induk:</p>
-            <p className="mb-2 truncate">{idNumber}</p>
-            <p className="font-bold ">Tingkatan:</p>
-            <p className="mb-2 truncate">{grade}</p>
+            <div className="font-bold">Nama Lengkap:</div>
+            <div className="mb-2 truncate">{fullName}</div>
+            <div className="font-bold ">Nomor Induk:</div>
+            <div className="mb-2 truncate">{idNumber}</div>
+            <div className="font-bold ">Tingkatan:</div>
+            <div className="mb-2 truncate">{grade}</div>
           </div>
         </div>
         <div className="flex justify-end">

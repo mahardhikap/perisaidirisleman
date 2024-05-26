@@ -87,8 +87,8 @@ export default function Event() {
           <Image
             src={"/images/login.jpg"}
             alt="event-pic"
-            width={1000}
-            height={1000}
+            width={1500}
+            height={1500}
             className="h-96 rounded-2xl object-cover w-full shadow"
           />
         </div>

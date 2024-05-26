@@ -101,8 +101,8 @@ export default function AddEvent() {
                   }
                   alt="Preview"
                   className="mb-5 rounded-md border border-gray-300 w-96 h-60 rounded-lg object-cover"
-                  width={100}
-                  height={100}
+                  width={500}
+                  height={500}
                 />
               </label>
               <input

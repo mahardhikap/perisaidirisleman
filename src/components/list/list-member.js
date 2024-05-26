@@ -86,6 +86,15 @@ export default function FormListMember() {
     });
   };
 
+  const truncateText = (text, maxLength) => {
+    // Remove HTML tags from text
+    const plainText = text.replace(/<[^>]*>/g, '');
+    if (plainText.length > maxLength) {
+      return plainText.substring(0, maxLength) + "...";
+    }
+    return plainText;
+  };
+
   return (
     <div>
       <div>
@@ -94,10 +103,10 @@ export default function FormListMember() {
       {data?.rows?.map((item, index) => {
         return (
           <div
-            className="grid grid-cols-1 lg:grid-cols-5 mb-3 bg-white p-2 rounded-lg"
+            className="grid grid-cols-1 lg:grid-cols-6 mb-3 bg-white p-2 rounded-lg"
             key={index}
           >
-            <div className="flex justify-start items-center col-span-5 lg:col-span-1">
+            <div className="flex justify-start items-center col-span-6 lg:col-span-2">
               <Image
                 src={
                   item?.photo === ("null" || null || undefined || "undefined")
@@ -105,30 +114,30 @@ export default function FormListMember() {
                     : item.photo
                 }
                 alt="photo-member"
-                height={100}
-                width={100}
-                className="h-56 w-full object-cover rounded-xl border"
+                height={500}
+                width={500}
+                className="h-56 w-56 object-cover rounded-xl border"
               />
             </div>
-            <div className="col-span-5 lg:col-span-3 p-2">
+            <div className="col-span-6 lg:col-span-3 p-2">
               <div className="grid grid-cols-2">
                 <div>
-                  <p className="font-medium">Nama</p>
-                  <p className="truncate">{item.fullname}</p>
-                  <p className="font-medium">Nomor Induk</p>
-                  <p className="truncate">{item.id_number}</p>
-                  <p className="font-medium">Tingkatan</p>
-                  <p className="truncate">{item.grade}</p>
+                  <div className="font-bold">Nama</div>
+                  <div className="break-words">{truncateText(item.fullname, 40)}</div>
+                  <div className="font-bold">Nomor Induk</div>
+                  <div className="truncate">{item.id_number}</div>
+                  <div className="font-bold">Tingkatan</div>
+                  <div className="truncate">{item.grade}</div>
                 </div>
                 <div>
-                  <p className="font-medium">Tempat, tanggal lahir</p>
-                  <p className="truncate">{item.birth}</p>
-                  <p className="font-medium">Motto</p>
-                  <p className="break-all">{item.motto}</p>
+                  <div className="font-bold">Tempat, tanggal lahir</div>
+                  <div className="truncate">{item.birth}</div>
+                  <div className="font-bold">Motto</div>
+                  <div className="break-all">{truncateText(item.motto, 100)}</div>
                 </div>
               </div>
             </div>
-            <div className="col-span-5 lg:col-span-1 flex flex-col gap-3 p-2">
+            <div className="col-span-6 lg:col-span-1 flex flex-col gap-3 p-2">
               <button onClick={()=> navigate.push(`/edit-member/${item.member_id}`)} className="p-3 bg-yellow-400 text-white font-medium truncate">
                 Edit
               </button>

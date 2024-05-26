@@ -69,8 +69,8 @@ export default function DetailEvent() {
                   : data?.image
               }
               className="w-full h-70vw sm:h-50vw lg:h-[640px] bg-slate-200 rounded-xl object-cover border shadow-sm"
-              width={500}
-              height={500}
+              width={1500}
+              height={1500}
               alt="detail-event-image"
             />
           </div>
