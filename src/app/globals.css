@@ -63,10 +63,10 @@
       @apply my-2;
     }
     .media {
-      @apply w-full aspect-video md:aspect-square
+      @apply w-full aspect-video mb-2
     }
     .media iframe {
-      @apply w-full aspect-video md:aspect-square
+      @apply w-full aspect-video mb-2
     }
   }
   
