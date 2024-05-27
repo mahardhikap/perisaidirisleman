@@ -13,7 +13,7 @@ export default function FormListEvent() {
 
   const truncateText = (text, maxLength) => {
     // Remove HTML tags from text
-    const plainText = text.replace(/<[^>]*>/g, '');
+    const plainText = text.replace(/<[^>]*>/g, ' ');
     if (plainText.length > maxLength) {
       return plainText.substring(0, maxLength) + "...";
     }

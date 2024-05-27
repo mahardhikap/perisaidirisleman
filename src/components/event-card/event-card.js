@@ -11,7 +11,7 @@ export default function EventCard({
 }) {
   const truncateText = (text, maxLength) => {
     // Remove HTML tags from text
-    const plainText = text.replace(/<[^>]*>/g, '');
+    const plainText = text.replace(/<[^>]*>/g, ' ');
     if (plainText.length > maxLength) {
       return plainText.substring(0, maxLength) + "...";
     }
@@ -29,7 +29,7 @@ export default function EventCard({
             className="rounded-2xl h-64 object-cover w-full"
           />
           {onTags.length > 0 ? (
-            <span className="p-2 rounded-2xl bg-white absolute top-2 left-2 text-xs font-medium border">
+            <span className="p-2 rounded-2xl bg-white text-black absolute top-2 left-2 text-xs font-medium border">
               {onTags}
             </span>
           ) : (
