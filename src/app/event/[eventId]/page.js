@@ -52,7 +52,7 @@ export default function DetailEvent() {
   return (
     <>
       <div className="bg-white">
-        <div className="sticky top-0 bg-[#fad74f] rounded-b-3xl">
+        <div className="sticky top-0 bg-[#fad74f] rounded-b-3xl z-10">
           <div className="container w-11/12 sm:w-10/12 mx-auto">
             <Header />
           </div>

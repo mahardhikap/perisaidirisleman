@@ -1,6 +1,7 @@
 import React from 'react';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
 const editorConfiguration = {
     toolbar: [
@@ -17,8 +18,29 @@ const editorConfiguration = {
         'blockQuote',
         'insertTable',
         'undo',
-        'redo'
-    ]
+        'redo',
+        '|',
+        'videoInsert', // Added video insert button
+    ],
+    // Configure the media embed feature
+    mediaEmbed: {
+        previewsInData: true
+    },
+    // Configure the media embed toolbar
+    toolbar: {
+        items: [
+            'bold',
+            'italic',
+            'link',
+            'bulletedList',
+            'numberedList',
+            'blockQuote',
+            'insertTable',
+            'mediaEmbed',
+            'undo',
+            'redo'
+        ]
+    }
 };
 
 function CustomEditor({ initialData, onChange }) {
@@ -31,6 +53,9 @@ function CustomEditor({ initialData, onChange }) {
                 const data = editor.getData();
                 onChange(data); // Call the onChange function passed from the parent component
             }}
+            // onReady={(editor) => {
+            //     CKEditorInspector.attach(editor);
+            // }}
         />
     );
 }
