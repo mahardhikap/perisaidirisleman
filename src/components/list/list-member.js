@@ -54,6 +54,7 @@ export default function FormListMember() {
   const handleSearchMember = async () => {
     const getListMemberDashboard = await ListMemberDashboard(memberUsername, 1)
     setData(getListMemberDashboard?.data)
+    setPage(1)
   }
 
   const handleKeyDown = (event) => {

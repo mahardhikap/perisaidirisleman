@@ -31,6 +31,7 @@ export default function Event() {
         onPage: 1,
       });
       setData(searchData?.data);
+      setPage(1)
     } catch (error) {
       console.error("Error fetching data:", error);
     }

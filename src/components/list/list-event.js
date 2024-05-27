@@ -60,6 +60,7 @@ export default function FormListEvent() {
   const handleSearchEvent = async () => {
     const getListEventDashboard = await ListEventDashboard(1, title)
     setData(getListEventDashboard?.data)
+    setPage(1)
   }
 
   const handleKeyDown = (event) => {
