@@ -1,10 +1,10 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
-import { useParams } from "next/navigation";
-import Image from "next/image";
-import axios from "axios";
+'use client';
+import React, { useEffect, useState } from 'react';
+import Header from '@/components/header/header';
+import Footer from '@/components/footer/footer';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
+import axios from 'axios';
 
 export default function DetailEvent() {
   const params = useParams();
@@ -17,7 +17,7 @@ export default function DetailEvent() {
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
     }
   };
@@ -27,23 +27,23 @@ export default function DetailEvent() {
       const response = await GetDetailEvent(params.eventId);
       setData(response?.data);
     } catch (error) {
-      console.error("Error get detail event", error);
+      console.error('Error get detail event', error);
     }
   };
 
   const formatDateInIndonesiaTime = (dateStr) => {
     const date = new Date(dateStr);
     const options = {
-      weekday: "long",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "Asia/Jakarta",
-      timeZoneName: "short",
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Asia/Jakarta',
+      timeZoneName: 'short',
     };
-    return date.toLocaleDateString("id-ID", options).replace("pukul", "|");
+    return date.toLocaleDateString('id-ID', options).replace('pukul', '|');
   };
 
   useEffect(() => {
@@ -64,8 +64,8 @@ export default function DetailEvent() {
           <div className="flex justify-center my-2">
             <Image
               src={
-                data?.image === ("null" || null || undefined || "undefined")
-                  ? "/images/noimage.png"
+                data?.image === ('null' || null || undefined || 'undefined')
+                  ? '/images/noimage.png'
                   : data?.image
               }
               className="w-full h-70vw sm:h-50vw lg:h-[640px] bg-slate-200 rounded-xl object-cover border shadow-sm"
@@ -76,11 +76,12 @@ export default function DetailEvent() {
           </div>
           <div className="mb-10">
             <p className="font-medium">
-              {formatDateInIndonesiaTime(data?.created_at)} - <span className="text-blue-400">{data?.username}</span>
+              {formatDateInIndonesiaTime(data?.created_at)} -{' '}
+              <span className="text-blue-400">{data?.username}</span>
             </p>
           </div>
           <div
-            className="text-sm sm:text-md md:text-lg"
+            className="text-sm sm:text-md md:text-lg break-all"
             dangerouslySetInnerHTML={{ __html: data?.post_article }}
           />
           {/* <div className="text-sm sm:text-md md:text-lg">

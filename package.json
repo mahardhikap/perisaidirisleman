@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-image": "^41.4.2",
     "@ckeditor/ckeditor5-inspector": "^4.1.0",
+    "@ckeditor/ckeditor5-media-embed": "^41.4.2",
     "@ckeditor/ckeditor5-react": "^7.0.0",
     "axios": "^1.6.8",
     "jwt-decode": "^4.0.0",
