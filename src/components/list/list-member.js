@@ -134,7 +134,7 @@ export default function FormListMember() {
                   <div className="font-bold">Tempat, tanggal lahir</div>
                   <div className="truncate">{item.birth}</div>
                   <div className="font-bold">Motto</div>
-                  <div className="break-all">{truncateText(item.motto, 100)}</div>
+                  <div className="break-words">{truncateText(item.motto, 100)}</div>
                 </div>
               </div>
             </div>

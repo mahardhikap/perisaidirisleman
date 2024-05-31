@@ -38,7 +38,7 @@ export default function EventCard({
         </div>
         <div className="p-2 text-black">
           <div className="font-bold text-lg truncate">{onTitle}</div>
-          <div className="break-all" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 100) }}/>
+          <div className="break-words" dangerouslySetInnerHTML={{ __html: truncateText(onPost, 100) }}/>
         </div>
         <div className="p-2 absolute bottom-0 text-right w-full">
           <div className="font-medium text-black">{onDate}</div>

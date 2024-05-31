@@ -140,7 +140,7 @@ export default function FormListEvent() {
             </div>
             <div className="col-span-4 lg:col-span-3 py-2 lg:px-2">
               <h2 className="font-bold truncate">{item?.title}</h2>
-              <div className="break-all" dangerouslySetInnerHTML={{__html: truncateText(item?.post_article, 100)}}/>
+              <div className="break-words" dangerouslySetInnerHTML={{__html: truncateText(item?.post_article, 100)}}/>
               <p className="font-medium">{formatDateInIndonesiaTime(item?.created_at)}</p>
             </div>
             <div className="col-span-1 lg:col-span-1 flex flex-col gap-5">

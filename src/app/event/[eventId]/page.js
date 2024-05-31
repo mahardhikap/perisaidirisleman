@@ -81,7 +81,7 @@ export default function DetailEvent() {
             </p>
           </div>
           <div
-            className="text-sm sm:text-md md:text-lg break-all"
+            className="text-sm sm:text-md md:text-lg break-words"
             dangerouslySetInnerHTML={{ __html: data?.post_article }}
           />
           {/* <div className="text-sm sm:text-md md:text-lg">
