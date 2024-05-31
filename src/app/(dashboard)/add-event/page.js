@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
 const CustomEditor = dynamic(
-  () => import("../../../components/ckeditor/custom-editor"),
+  () => import("../../../components/custom-editor.js"),
   { ssr: false }
 );
 

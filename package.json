@@ -9,18 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
     "@ckeditor/ckeditor5-image": "^41.4.2",
-    "@ckeditor/ckeditor5-inspector": "^4.1.0",
-    "@ckeditor/ckeditor5-media-embed": "^41.4.2",
     "@ckeditor/ckeditor5-react": "^7.0.0",
     "axios": "^1.6.8",
+    "ckeditor5-custom-build": "^0.0.6",
     "jwt-decode": "^4.0.0",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
     "sweetalert2": "^11.10.7"
-  },
+  },  
   "devDependencies": {
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
