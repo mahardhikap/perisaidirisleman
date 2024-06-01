@@ -1,6 +1,5 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Head from "next/head";
 
 // const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -8,16 +7,31 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, title, description }) {
   return (
     <>
-      <Head>
-        <title>Perisai Diri Cabang Sleman</title>
-        <meta name="description" content="Pandai silat, tanpa cidera"/>
-        <meta name="google-site-verification" content="qrhjx4oG31-_WzMue_uckzsud9098vqZz3s7YbKJgDM" />
-        {/* Add other metadata tags here */}
-      </Head>
       <html lang="en" className="bg-[#f6f8fa]">
+        <head>
+          {title !== undefined ? (
+            <title key={title}>{`Perisai Diri Cabang Sleman | ${title}`}</title>
+          ) : (
+            <title key={title}>{`Perisai Diri Cabang Sleman`}</title>
+          )}
+          {description !== undefined ? (
+            <meta name="description" content={description} key={description} />
+          ) : (
+            <meta
+              name="description"
+              content={`Pandai silat, tanpa cidera`}
+              key={description}
+            />
+          )}
+          <meta
+            name="google-site-verification"
+            content="qrhjx4oG31-_WzMue_uckzsud9098vqZz3s7YbKJgDM"
+          />
+          {/* Add other metadata tags here */}
+        </head>
         <body className={poppins.className}>{children}</body>
       </html>
     </>

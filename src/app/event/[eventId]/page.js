@@ -6,11 +6,11 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
 import Head from "next/head";
+import RootLayout from "@/app/layout";
 
 export default function DetailEvent() {
   const params = useParams();
   const [data, setData] = useState([]);
-  const [dynamicMetadata, setDynamicMetadata] = useState("");
 
   const GetDetailEvent = async (idEvent) => {
     try {
@@ -24,23 +24,10 @@ export default function DetailEvent() {
     }
   };
 
-  const generateMetadata = async (eventData) => {
-    // Menghasilkan metadata berdasarkan data acara yang diterima dari panggilan API
-    return {
-      title: truncateText(eventData.post_article, 60),
-      description: truncateText(eventData.post_article, 160),
-      // Tambahkan metadata lain sesuai kebutuhan
-    };
-  };
-
   const getDetailEvent = async () => {
     try {
       const response = await GetDetailEvent(params.eventId);
       setData(response?.data);
-
-      // Set metadata dinamis setelah menerima data dari API
-      const dynamicMetadata = await generateMetadata(response?.data);
-      setDynamicMetadata(dynamicMetadata);
     } catch (error) {
       console.error("Error get detail event", error);
     }
@@ -74,12 +61,9 @@ export default function DetailEvent() {
     getDetailEvent();
   }, []);
   return (
-    <>
-      <Head>
-        <title>{dynamicMetadata?.title}</title>
-        <meta name="description" content={dynamicMetadata?.description} />
-        <meta name="google-site-verification" content="qrhjx4oG31-_WzMue_uckzsud9098vqZz3s7YbKJgDM" />
-      </Head>
+      <RootLayout title={truncateText(data?.title, 56)} description={truncateText(data?.post_article, 156)}>
+        {/* Add other metadata tags here */}
+      
       <div className="bg-white">
         <div className="sticky top-0 bg-[#fad74f] rounded-b-3xl z-10">
           <div className="container w-11/12 sm:w-10/12 mx-auto">
@@ -123,6 +107,6 @@ export default function DetailEvent() {
           </div>
         </div>
       </div>
-    </>
+    </RootLayout>
   );
 }
