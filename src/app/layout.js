@@ -26,10 +26,7 @@ export default function RootLayout({ children, title, description }) {
               key={description}
             />
           )}
-          <meta
-            name="google-site-verification"
-            content="qrhjx4oG31-_WzMue_uckzsud9098vqZz3s7YbKJgDM"
-          />
+          <meta name="google-site-verification" content="kI4jOP2_e_FRUWqoxsX_-zLexifelXHisFcN4Qehh6U" />
           {/* Add other metadata tags here */}
         </head>
         <body className={poppins.className}>{children}</body>
