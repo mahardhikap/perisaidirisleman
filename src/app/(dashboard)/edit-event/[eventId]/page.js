@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 
 const CustomEditor = dynamic(
-  () => import("../../../../components/ckeditor/custom-editor"),
+  () => import("../../../../components/custom-editor"),
   { ssr: false }
 );
 

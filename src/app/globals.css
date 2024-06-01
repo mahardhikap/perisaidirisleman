@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
     body {
-      @apply text-base font-sans text-black;
+      @apply text-sm font-sans text-black;
     }
     h1 {
       @apply text-3xl font-bold text-black;
@@ -18,13 +18,13 @@
       @apply text-lg font-semibold text-black;
     }
     h5 {
-      @apply text-base font-semibold text-black;
+      @apply text-sm font-semibold text-black;
     }
     h6 {
-      @apply text-base font-semibold text-black;
+      @apply text-sm font-semibold text-black;
     }
     p {
-      @apply text-base text-black my-3;
+      @apply text-sm text-black my-3;
     }
     a {
       @apply text-blue-500 hover:text-blue-700;
@@ -35,16 +35,19 @@
       margin-bottom: 1rem;
     }
     table {
-      @apply w-full border border-collapse text-base;
+      @apply w-full border border-collapse text-sm break-words;
     }
     th {
-      @apply bg-gray-200 p-2 text-left font-semibold text-base;
+      @apply bg-gray-200 p-2 text-left font-semibold text-sm break-words;
     }
     td {
-      @apply border-2 border-black p-2 text-base;
+      @apply border-2 border-black p-2 text-sm break-words;
+    }
+    tr{
+      @apply break-words text-sm;
     }
     tr:hover {
-      @apply bg-gray-100;
+      @apply bg-gray-100 text-sm;
     }
     blockquote {
       @apply border-s-4 font-medium ps-4 my-4 italic text-gray-600;
@@ -59,7 +62,7 @@
       @apply list-decimal ps-4;
     }
     li {
-      @apply text-base;
+      @apply text-sm;
       @apply my-2;
     }
     .media {
