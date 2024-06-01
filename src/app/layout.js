@@ -7,28 +7,10 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children, title, description }) {
+export default function RootLayout({ children }) {
   return (
     <>
       <html lang="en" className="bg-[#f6f8fa]">
-        <head>
-          {title !== undefined ? (
-            <title key={title}>{`Perisai Diri Cabang Sleman | ${title}`}</title>
-          ) : (
-            <title key={title}>{`Perisai Diri Cabang Sleman`}</title>
-          )}
-          {description !== undefined ? (
-            <meta name="description" content={description} key={description} />
-          ) : (
-            <meta
-              name="description"
-              content={`Pandai silat, tanpa cidera`}
-              key={description}
-            />
-          )}
-          <meta name="google-site-verification" content="kI4jOP2_e_FRUWqoxsX_-zLexifelXHisFcN4Qehh6U" />
-          {/* Add other metadata tags here */}
-        </head>
         <body className={poppins.className}>{children}</body>
       </html>
     </>
