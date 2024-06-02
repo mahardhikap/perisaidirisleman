@@ -25,6 +25,9 @@ const editorConfiguration = {
     // "imageUpload",
     // "insertImage",
   ],
+  mediaEmbed: {
+    previewsInData: true,
+  },
   // plugins: [ImageInsertViaUrl],
   // image: {
   //   insert: {
