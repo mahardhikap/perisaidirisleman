@@ -11,16 +11,20 @@ export default function Event() {
   const [page, setPage] = useState(1);
   const [title, setTitle] = useState("");
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const SearchEvent = async ({ searchTitle, onPage }) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/article?searchby=title&search=${searchTitle}&sortby=created_at&sort=DESC&limit=6&page=${onPage}`
       );
       return response.data; // Mengembalikan data yang diterima dari panggilan API
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       throw error; // Melemparkan error untuk menangani di tempat lain jika perlu
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -31,7 +35,7 @@ export default function Event() {
         onPage: 1,
       });
       setData(searchData?.data);
-      setPage(1)
+      setPage(1);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -56,7 +60,7 @@ export default function Event() {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSearchEvent();
     }
   };
@@ -71,7 +75,6 @@ export default function Event() {
     };
     return date.toLocaleDateString("id-ID", options);
   };
-
 
   useEffect(() => {
     handleShowEvent();
@@ -103,30 +106,36 @@ export default function Event() {
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="p-4 text-md w-full sm:w-1/2 mb-3 rounded-lg border outline-none border-2 border-[#fad74f]"
+                className="p-4 text-md w-full sm:w-1/2 mb-3 rounded-lg outline-none border-2 border-[#fad74f]"
                 placeholder="Cari judul, enter"
               />
             </div>
             <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-2xl">
-              {data?.rows?.map((item, index) => {
-                return (
-                  <Link href={`/event/${item.article_id}`} key={index}>
-                    <EventCard
-                      onImage={
-                        item.image ===
-                        ("null" || null || undefined || "undefined")
-                          ? "/images/noimage.png"
-                          : item.image
-                      }
-                      onTags={item.tags}
-                      onTitle={item.title}
-                      onPost={item.post_article}
-                      onAuthor={item.username}
-                      onDate={formatDateInIndonesiaTime(item.created_at)}
-                    />
-                  </Link>
-                );
-              })}
+              {isLoading ? (
+                <div className="flex justify-center items-center col-span-1 md:col-span-2 lg:col-span-3">
+                  <div className="loader " />
+                </div>
+              ) : (
+                data?.rows?.map((item, index) => {
+                  return (
+                    <Link href={`/event/${item.article_id}`} key={index}>
+                      <EventCard
+                        onImage={
+                          item.image ===
+                          ("null" || null || undefined || "undefined")
+                            ? "/images/noimage.png"
+                            : item.image
+                        }
+                        onTags={item.tags}
+                        onTitle={item.title}
+                        onPost={item.post_article}
+                        onAuthor={item.username}
+                        onDate={formatDateInIndonesiaTime(item.created_at)}
+                      />
+                    </Link>
+                  );
+                })
+              )}
             </div>
             <div className="my-5 text-center">
               <div>
