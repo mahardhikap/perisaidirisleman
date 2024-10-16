@@ -112,7 +112,7 @@ export default function Event() {
             </div>
             <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-2xl">
               {isLoading ? (
-                <div className="flex justify-center items-center col-span-1 md:col-span-2 lg:col-span-3">
+                <div className="flex justify-center items-center col-span-1 md:col-span-2 lg:col-span-3 min-h-96">
                   <div className="loader " />
                 </div>
               ) : (

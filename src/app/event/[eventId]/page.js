@@ -9,6 +9,7 @@ import axios from "axios";
 export default function DetailEvent() {
   const params = useParams();
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const GetDetailEvent = async (idEvent) => {
     try {
@@ -24,10 +25,13 @@ export default function DetailEvent() {
 
   const getDetailEvent = async () => {
     try {
+      setIsLoading(true);
       const response = await GetDetailEvent(params.eventId);
       setData(response?.data);
     } catch (error) {
       console.error("Error get detail event", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,35 +69,43 @@ export default function DetailEvent() {
         </div>
       </div>
       <div className="container mx-auto w-11/12 sm:w-8/12">
-        <div className="text-center my-10 text-lg sm:text-lg md:text-xl lg:text-2xl font-bold">
-          {data?.title}
-        </div>
-        <div className="flex justify-center my-2">
-          <Image
-            src={
-              data?.image === ("null" || null || undefined || "undefined")
-                ? "/images/noimage.png"
-                : data?.image
-            }
-            className="w-full h-70vw sm:h-50vw lg:h-[640px] bg-slate-200 rounded-xl object-cover border shadow-sm"
-            width={1500}
-            height={1500}
-            alt="detail-event-image"
-          />
-        </div>
-        <div className="mb-10">
-          <p className="font-medium">
-            {formatDateInIndonesiaTime(data?.created_at)} -{" "}
-            <span className="text-blue-400">{data?.username}</span>
-          </p>
-        </div>
-        <div
-          className="text-sm sm:text-md md:text-lg break-words"
-          dangerouslySetInnerHTML={{ __html: data?.post_article }}
-        />
-        {/* <div className="text-sm sm:text-md md:text-lg">
+        {isLoading ? (
+          <div className="flex justify-center items-center col-span-1 md:col-span-2 lg:col-span-3 mt-10 min-h-96">
+            <div className="loader " />
+          </div>
+        ) : (
+          <>
+            <div className="text-center my-10 text-lg sm:text-lg md:text-xl lg:text-2xl font-bold">
+              {data?.title}
+            </div>
+            <div className="flex justify-center my-2">
+              <Image
+                src={
+                  data?.image === ("null" || null || undefined || "undefined")
+                    ? "/images/noimage.png"
+                    : data?.image
+                }
+                className="w-full h-70vw sm:h-50vw lg:h-[640px] bg-slate-200 rounded-xl object-cover border shadow-sm"
+                width={1500}
+                height={1500}
+                alt="detail-event-image"
+              />
+            </div>
+            <div className="mb-10">
+              <p className="font-medium">
+                {formatDateInIndonesiaTime(data?.created_at)} -{" "}
+                <span className="text-blue-400">{data?.username}</span>
+              </p>
+            </div>
+            <div
+              className="text-sm sm:text-md md:text-lg break-words"
+              dangerouslySetInnerHTML={{ __html: data?.post_article }}
+            />
+            {/* <div className="text-sm sm:text-md md:text-lg">
           {data?.post_article}
         </div> */}
+          </>
+        )}
       </div>
       <div className="rounded-t-3xl mx-auto container bg-[#fad74f] mt-10">
         <div className="container mx-auto w-11/12 sm:w-10/12 py-20">
